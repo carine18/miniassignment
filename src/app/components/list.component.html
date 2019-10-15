@@ -1,0 +1,87 @@
+<div class="main-div">
+    <div class="form-div">
+        <form #form="ngForm" (ngSubmit)="addItem(form.value)"> 
+
+            <mat-form-field appearance="outline">
+                <mat-label>Album name: </mat-label>
+                <input type="text" id="albumName" name="albumName" matInput required 
+                #albumNameF="ngModel" [(ngModel)]="albumName" placeholder="Please enter your album name">
+            </mat-form-field><br>
+              <!-- <label>Album name:</label>
+              <input type="text" name="albumName" [(ngModel)]="albumName" required> -->
+
+            <mat-form-field appearance="outline">
+                <mat-label>Artist: </mat-label>
+                <input type="text" id="artist" name="artist" matInput required 
+                #artistF="ngModel" [(ngModel)]="artist1" placeholder="Please enter the artist name">
+            </mat-form-field><br>
+            <!-- <label>Artist:</label>
+            <input type="text" name="artist" [(ngModel)]="artist" required> -->
+            
+            <mat-form-field appearance="outline">
+                <mat-label>Rating: </mat-label>
+                <input type="text" id="rating" name="rating" matInput
+                #ratingF="ngModel" [(ngModel)]="rating" placeholder="Please enter 0 to 10.">
+            </mat-form-field><br>
+            <mat-hint *ngIf= "ratingF.invalid">Please enter 0 to 10</mat-hint>
+            <!-- <mat-label>Rating:</mat-label>
+            <mat-slider (change)="updateSetting($event)" #ratingF min="0" max="10" 
+            step="1" value="5" tickInterval="1" thumbLabel [(ngModel)]="rating">
+            </mat-slider><br> -->
+            
+            <mat-form-field appearance="outline">
+                <mat-label>Album Cover Image:</mat-label>
+                <input type="text" id="image" name="image" matInput 
+                #imageF="ngModel" [(ngModel)]="image" placeholder="Please enter the album cover image URL">
+                <mat-error *ngIf="imageF.hasError('text')">
+                    URL format is www.&lt;someserver&gt;
+                </mat-error>
+            </mat-form-field><br>
+            <!-- <label>Album Cover Image:</label>
+            <input type="text" name="image" [(ngModel)]="image">
+            <br> -->
+
+            <!-- <div fxLayout="row column" fxLayoutAlign="space-around center"> -->
+                <button mat-raised-button type="reset" color="warn">
+                  <mat-icon>clear</mat-icon>
+                  <!-- Clear -->
+                </button>
+                <button mat-raised-button type="submit" [disabled]="form.invalid" color="primary">
+                    Add to List
+                </button>
+              <!-- </div> -->
+            <!-- <button type="submit">Add to List</button> -->
+        </form>
+    </div>
+
+    <div *ngFor="let item of (list | orderBy:'artist')">
+        <div class="card">
+            <span class="close-icon" (click)="editItem(item)">
+                <button type="button">Edit</button>
+            </span>
+            <span class="close-icon" (click)="deleteItem(item)">&times;</span>
+            <div class="container">
+                <h4>
+                    <b>Album Name: {{ item.artist }}</b>
+                </h4>
+
+                <div>
+                    <p>
+                        <i>Artist: {{ item.albumName }}</i>
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        <i>Rating: {{ item.rating }}</i>
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        Album Cover Image:<img src="{{ item.image }}" alt="No photo">
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

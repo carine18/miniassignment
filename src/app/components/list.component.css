@@ -1,0 +1,36 @@
+.card {
+    border: 1px solid black;
+    transition: 0.3s;
+    width: 40%;
+  }
+  
+  .card:hover {
+   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+  
+  .container {
+    padding: 2px 16px;
+  }
+
+  .main-div{
+      width: 100%;
+      margin: 0px;
+  }
+  .form-div{
+      width: 100%
+  }
+  .close-icon{
+      color: red;
+      float: right;
+      padding: 10px;
+  }
+
+  #rating, #image {
+      color: grey;
+
+  }
+
+  img {
+      width: 20vw;
+      height: 20vw;
+  }
